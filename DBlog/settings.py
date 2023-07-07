@@ -28,9 +28,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '.vercel.app', 'onrender.com']
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME: ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'onrender.com']
+
 
 
 # Application definition
@@ -90,13 +89,8 @@ AUTH_USER_MODEL = 'backend.User'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'URL': os.environ.get('URL'),
-        'NAME': os.environ.get('NAME'),
-        'USER': os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD'),
-        'HOST': os.environ.get('HOST'),
-        'PORT': os.environ.get('PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -138,7 +132,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
